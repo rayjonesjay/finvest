@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Lending Platform</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script>
+        // Handle Login via AJAX (fetch API)
+        async function handleLogin(event) {
+            event.preventDefault();
+
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            // Send the login credentials to the server
+            const response = await fetch("/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email, password }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                alert(data.message);
+                window.location.href = "/dashboard"; // Redirect to dashboard if login is successful
+            } else {
+                alert(data.message || "Login failed. Please try again.");
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/register">Register</a></li>
+                <li><a href="/sign-in">Sign In</a></li>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/borrow">Borrow</a></li>
+                <li><a href="/lend">Lend</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <h1>Welcome to LoanQuest Platform</h1>
+        <p>Connect with investors and borrowers directly. Secure and decentralized lending.</p>
+
+        <section>
+            <h2>How It Works</h2>
+            <p>LoanQuest allows investors to lend money and borrowers to request loans with reasonable terms. LoanQuest facilitates an 8% interest rate on loans.</p>
+        </section>
+        
+        <section>
+            <h2>Get Started</h2>
+            <ul>
+                <li><a href="/register">Create an account</a></li>
+                <li><a href="/sign-in">Sign In</a></li>
+                <li><a href="/borrow">Request a Loan</a></li>
+                <li><a href="/lend">Lend Money</a></li>
+            </ul>
+        </section>
+        
+        <!-- Login Section -->
+        <section>
+            <h2>Login to Your Account</h2>
+            <div class="form-container">
+                <form onsubmit="handleLogin(event)">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+                    <button type="submit">Login</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2024 Lending Platform. All rights reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>Loan Request</title>
+    <script>
+        function calculateTotalPayable() {
+            const amount = parseFloat(document.getElementById("amount").value);
+            const interestRate = 8; // 8% interest rate
+            if (!isNaN(amount) && amount > 0) {
+                const totalPayable = amount + (amount * interestRate / 100);
+                document.getElementById("totalPayable").textContent = 
+                    `Total Payable (with 8% interest): $${totalPayable.toFixed(2)}`;
+            } else {
+                document.getElementById("totalPayable").textContent = 
+                    "Enter a valid loan amount.";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Request a Loan</h1>
+        <form action="/loan-request" method="POST">
+            <label for="amount">Loan Amount ($):</label>
+            <input type="number" id="amount" name="amount" placeholder="Enter loan amount" oninput="calculateTotalPayable()" required>
+            
+            <p id="totalPayable" class="total-payable">Total Payable (with 8% interest): $0.00</p>
+
+            <button type="submit">Submit Loan Request</button>
+        </form>
+    </div>
+</body>
+</html>
