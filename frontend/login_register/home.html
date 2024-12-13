@@ -1,35 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Ashamify App</title>
+    <title></title>
 
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="bootstrap.min.css">
+    <style>
+        nav{
+            display: flex;
+            justify-content: space-between;
+            background-color: rgb(13, 40, 61);
+            padding: 15px;
+            font-size: larger;
+        }
+        .container{
+            background-color: rgb(156, 193, 223);
+            padding: 45%;
+        }
+    </style>
 </head>
-<body>
 
+<body>
+    <nav class="nav-bar">
+        <div class="logo">logo</div>
+        <div class="sign-in">
+            <a href="./index.html">Sign in</a>
+        </div>
+
+    </nav>
+    <h1>This is the Home page</h1>
     <div class="container">
 
-        <!-- Logout -->
-        <div id="logout-container" class="row pull-right">
-            <a id="logout" style="color: blue;">Logout</a>
-        </div>
+    </div>
 
-        <!-- Greet user -->
-        <div class="row pull-left">
-            <div>
-                <p id="home-greet">Welcome, <span id="greet-user"></span></p>
-            </div>
-        </div>
-    </div> <!-- End main container -->
-
-    <!-- Load JavaScript code -->
-    <script src="uuidv4.js"></script>
-    <script src="login.js"></script>
-    <script src="home.js"></script>
-    <script src="logout.js"></script>
+    <footer>
+        <p>P2P Business Inc &copy; 2024</p>
+    </footer>
 </body>
+
 </html>
