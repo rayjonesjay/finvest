@@ -3,16 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
     <link rel="stylesheet" href="/static/css/style.css">
-    <title>Login</title>
     <script>
-        async function handleLogin(event) {
-            event.preventDefault();
+        // JavaScript function to handle form submission and input validation
+        async function handleSignIn(event) {
+            event.preventDefault(); // Prevent form submission to allow validation
 
             const email = document.getElementById("email").value;
             const password = document.getElementById("password").value;
 
-            const response = await fetch("/login", {
+            // Basic validation to check if email and password are entered
+            if (!email || !password) {
+                alert("Please fill out both email and password.");
+                return;
+            }
+
+            // Send data to the server via POST request
+            const response = await fetch("/signin", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -23,10 +31,10 @@
             const data = await response.json();
 
             if (response.ok) {
-                alert(data.message);
-                window.location.href = "/dashboard"; // Redirect to dashboard
+                alert(data.message);  // If login is successful
+                window.location.href = "/dashboard";  // Redirect to the dashboard or home page
             } else {
-                alert(data.message || "Login failed. Please try again.");
+                alert(data.message || "Sign-in failed. Please try again.");
             }
         }
     </script>
@@ -48,15 +56,15 @@
     </header>
 
     <div class="form-container">
-        <h1>Login</h1>
-        <form onsubmit="handleLogin(event)">
+        <h1>Sign In</h1>
+        <form onsubmit="handleSignIn(event)">
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" placeholder="Enter your email" required>
 
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" placeholder="Enter your password" required>
 
-            <button type="submit">Login</button>
+            <button type="submit">Sign In</button>
         </form>
     </div>
     <footer>
