@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login Page | Index Page</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Welcome!</h1>
+
+        <div class="div-welcome">
+            <!-- Placeholder for welcome text or additional content -->
+        </div>
+
+        <!-- Signin container -->
+        <div class="div-signin">
+            <form action="" id="frm-signin">
+                <div class="form-group">
+                    <input type="text" id="inp-username" class="form-control" placeholder="Enter your username" autocomplete="off" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="password" id="inp-password" class="form-control" placeholder="Enter your password" autocomplete="off" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="checkbox" id="show-password" > Show Password
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" id="btn-submit" class="form-control" value="Sign In">
+                </div>
+
+                <div class="form-group" id="signin-status">
+                    <p id="signin-status-message"></p>
+                </div>
+            </form>
+        </div>
+        <!-- End signin container -->
+
+        <br>
+
+        <!-- Forget password and Signup container -->
+        <div class="div-signup pull-right">
+            <div>
+                <button id="btn-forgetPassword" class="text-warning">Forget Password</button>
+            </div>
+            <br>
+            <div>
+                <button id="btn-signup" class="text-primary">Signup</button>
+            </div>
+        </div>
+        <!-- End signup container -->
+        <br><br>
+    </div>
+    <!-- End main container -->
+
+    <footer>
+        <p>P2P Business Inc &copy; 2024</p>
+    </footer>
+
+    <!-- Include JavaScript programs -->
+    <script src="uuidv4.js"></script>
+    <script src="login.js"></script>
+    <script src="login-app.js"></script>
+</body>
+
+</html>

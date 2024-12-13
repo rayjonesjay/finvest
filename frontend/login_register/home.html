@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ashamify App</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bootstrap.min.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- Logout -->
+        <div id="logout-container" class="row pull-right">
+            <a id="logout" style="color: blue;">Logout</a>
+        </div>
+
+        <!-- Greet user -->
+        <div class="row pull-left">
+            <div>
+                <p id="home-greet">Welcome, <span id="greet-user"></span></p>
+            </div>
+        </div>
+    </div> <!-- End main container -->
+
+    <!-- Load JavaScript code -->
+    <script src="uuidv4.js"></script>
+    <script src="login.js"></script>
+    <script src="home.js"></script>
+    <script src="logout.js"></script>
+</body>
+</html>

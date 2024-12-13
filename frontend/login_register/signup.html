@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Signup page</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <form action="" id="frm-signup">
+            <div class="form-group">
+                <input type="text" id="inp-username" class="form-control" placeholder="Enter your username" autocomplete="off" required>
+            </div>
+
+            <div class="form-group">
+                <input type="password" id="inp-password" class="form-control"  placeholder="Enter your password" autocomplete="off" required>
+            </div>
+
+            <div class="form-group">
+                <input type="email" id="inp-email" class="form-control"  placeholder="Enter your email" autocomplete="off" required>
+            </div>
+
+            <div class="form-group">
+                <input type="value" id="inp-phone-number" class="form-control"  placeholder="Enter your phone number" autocomplete="off" required>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" id="btn-submit" class="form-control text-primary" value="Register">
+            </div>
+
+            <div id="signup-status" class="form-group">
+                <p id="signup-status-message"></p>
+            </div>
+        </form>
+
+
+        <div class="form-group" id="signin-page">
+            <a href="index.html" id="signin-page-message">Already have an account?</a>
+        </div>
+    </div> <!-- End main container -->
+
+    <!-- Include JavaScript code -->
+    <script src="uuidv4.js"></script>
+    <script src="login.js"></script>
+    <script src="signup.js"></script>
+</body>
+</html>
