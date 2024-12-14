@@ -16,9 +16,11 @@
             font-family: 'Arial', sans-serif;
             background-color: #f7f9fb;
             color: #333;
+            display: flex; /* Use flexbox for the layout */
+            flex-direction: column;
+            min-height: 100vh; /* Ensure body is at least the full viewport height */
         }
 
-        /* Navigation Bar */
         header {
             background-color: #0d283d;
             padding: 10px 20px;
@@ -46,10 +48,19 @@
             color: #1e90ff;
         }
 
+        /* Main Content */
+        main {
+            flex: 1; /* Allow main content to take up remaining space */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
         /* Form Container */
         .form-container {
             max-width: 500px;
-            margin: 50px auto;
+            margin: 20px auto;
             background-color: white;
             padding: 30px;
             border-radius: 8px;
@@ -160,17 +171,19 @@
         </nav>
     </header>
 
-    <div class="form-container">
-        <h1>Request a Loan</h1>
-        <form action="/loan-request" method="POST">
-            <label for="amount">Loan Amount ($):</label>
-            <input type="number" id="amount" name="amount" placeholder="Enter loan amount" oninput="calculateTotalPayable()" required>
-            
-            <p id="totalPayable" class="total-payable">Total Payable (with 8% interest): $0.00</p>
+    <main>
+        <div class="form-container">
+            <h1>Request a Loan</h1>
+            <form action="/loan-request" method="POST">
+                <label for="amount">Loan Amount ($):</label>
+                <input type="number" id="amount" name="amount" placeholder="Enter loan amount" oninput="calculateTotalPayable()" required>
+                
+                <p id="totalPayable" class="total-payable">Total Payable (with 8% interest): $0.00</p>
 
-            <button type="submit">Submit Loan Request</button>
-        </form>
-    </div>
+                <button type="submit">Submit Loan Request</button>
+            </form>
+        </div>
+    </main>
 
     <footer>
         <p>&copy; 2024 LoanQuest. All rights reserved.</p>
