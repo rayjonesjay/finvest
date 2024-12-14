@@ -4,9 +4,9 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"time"
 
 	"auth/routes/userinfo"
+	"auth/utils"
 	"auth/xsupabase"
 
 	"github.com/joho/godotenv"
@@ -14,16 +14,6 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/supabase-community/supabase-go"
 )
-
-// Note struct for CRUD operations
-type Note struct {
-	ID        int       `json:"id"`
-	UserID    string    `json:"user_id"`
-	Title     string    `json:"title"`
-	Content   string    `json:"content"`
-	CreatedAt time.Time `json:"created_at"`
-	UpdatedAt time.Time `json:"updated_at"`
-}
 
 func main() {
 	var err error
@@ -65,10 +55,38 @@ func main() {
 		c.HTML(http.StatusOK, "register.html", nil)
 	})
 
+	r.GET("/about", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "about.html", nil)
+	})
+
+	r.GET("/lend", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "lend.html", nil)
+	})
+
+	r.GET("/borrow", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "loan_request.html", nil)
+	})
+
 	r.POST("/signup", func(c *gin.Context) {
 		email := c.PostForm("email")
 		password := c.PostForm("password")
+		phone := c.PostForm("phone")
+		firstname := c.PostForm("first_name")
+		lastname := c.PostForm("last_name")
 
+		// check the phone number
+		if !utils.IsValidPhone(phone) {
+			c.JSON(http.StatusBadRequest, gin.H{"message": "invalid phone number"})
+			return
+		}
+
+		// check the first and last name
+		if lastname == "" || firstname == "" {
+			c.JSON(http.StatusBadRequest, gin.H{"message": "please provide both the first and last name"})
+			return
+		}
+
+		// check email and password
 		if email == "" || password == "" {
 			c.JSON(http.StatusBadRequest, gin.H{"email": "email and password required"})
 			return
@@ -80,7 +98,7 @@ func main() {
 	})
 
 	// Routes
-	r.Use(AuthMiddleware())
+	r.Use()
 	{
 		// Register User Information routes
 		routeGroup := r.Group("/auth")
@@ -91,11 +109,6 @@ func main() {
 			routeGroup.GET("/update", userinfo.Update)
 		}
 	}
-
-	// r.POST("/notes", createNote)
-	// r.GET("/notes", getNotes)
-	// r.PUT("/notes/:id", updateNote)
-	// r.DELETE("/notes/:id", deleteNote)
 
 	log.Fatal(r.Run(":8080"))
 }
