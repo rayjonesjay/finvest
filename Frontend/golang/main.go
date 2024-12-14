@@ -17,6 +17,8 @@ func main() {
 	http.HandleFunc("/login", LoginPageHandler)
 	http.HandleFunc("/borrow", BorrowPageHandler)
 	http.HandleFunc("/lend", LendPageHandler)
+	http.HandleFunc("/profile", UserProfilePageHandler)
+
 
 	fmt.Println("Server is running on http://localhost:8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
@@ -47,7 +49,11 @@ func BorrowPageHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func LendPageHandler(w http.ResponseWriter, r *http.Request) {
-	http.ServeFile(w, r, "templates/lend_request.html")
+	http.ServeFile(w, r, "templates/lend.html")
+}
+
+func UserProfilePageHandler(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, "templates/user_profile.html")
 }
 
 // Dummy user data for demonstration

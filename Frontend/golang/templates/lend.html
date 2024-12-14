@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/css/style.css">
-    <title>Loan Request</title>
+    <title>Lending Page</title>
     <script>
         function calculateTotalPayable() {
             const amount = parseFloat(document.getElementById("amount").value);
@@ -15,13 +15,12 @@
                     `Total Payable (with 8% interest): $${totalPayable.toFixed(2)}`;
             } else {
                 document.getElementById("totalPayable").textContent = 
-                    "Enter a valid loan amount.";
+                    "Enter a valid lending amount.";
             }
         }
     </script>
 </head>
 <body>
-
     <header>
         <nav>
             <ul>
@@ -36,17 +35,20 @@
         </nav>
     </header>
 
-    <div class="form-container">
-        <h1>Request a Loan</h1>
-        <form action="/loan-request" method="POST">
-            <label for="amount">Loan Amount ($):</label>
-            <input type="number" id="amount" name="amount" placeholder="Enter loan amount" oninput="calculateTotalPayable()" required>
-            
-            <p id="totalPayable" class="total-payable">Total Payable (with 8% interest): $0.00</p>
+    <main>
+        <div class="form-container">
+            <h1>Lend Money</h1>
+            <form action="/lend-money" method="POST">
+                <label for="amount">Amount to Lend ($):</label>
+                <input type="number" id="amount" name="amount" placeholder="Enter amount to lend" oninput="calculateTotalPayable()" required>
+                
+                <p id="totalPayable" class="total-payable">Total Payable (with 8% interest): $0.00</p>
 
-            <button type="submit">Submit Loan Request</button>
-        </form>
-    </div>
+                <button type="submit">Confirm Transaction</button>
+            </form>
+        </div>
+    </main>
+
     <footer>
         <p>&copy; 2024 LoanQuest. All rights reserved.</p>
     </footer>
