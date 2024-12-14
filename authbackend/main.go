@@ -1,13 +1,15 @@
 package main
 
 import (
-	"auth/routes/userinfo"
-	"auth/xsupabase"
-	"github.com/joho/godotenv"
 	"log"
 	"net/http"
 	"os"
 	"time"
+
+	"auth/routes/userinfo"
+	"auth/xsupabase"
+
+	"github.com/joho/godotenv"
 
 	"github.com/gin-gonic/gin"
 	"github.com/supabase-community/supabase-go"
@@ -40,26 +42,60 @@ func main() {
 		log.Fatal("cannot initialize supabase client", err)
 	}
 	log.Println("[OK] supabase client initialized")
-	//data, count, err := supabaseClient.From("countries").Select("*", "exact", false).Execute()
+	// data, count, err := supabaseClient.From("countries").Select("*", "exact", false).Execute()
 
 	r := gin.Default()
+	if os.Getenv("DEVELOPMENT_MODE") == "TRUE" {
+		gin.SetMode(gin.DebugMode)
+	} else {
+		gin.SetMode(gin.ReleaseMode)
+	}
+
+	// static files
+	r.Static("/static", "../frontend/static")
+
+	// Load HTML templates
+	r.LoadHTMLGlob("../frontend/templates/*.html")
+
+	r.GET("/", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "index.html", nil)
+	})
+
+	r.GET("/signup", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "signup.html", nil)
+	})
+
+	r.POST("/signup", func(c *gin.Context){
+		email := c.PostForm("email")
+		password := c.PostForm("password")
+
+		if email == "" || password == "" {
+			c.JSON(http.StatusBadRequest, gin.H{"email": "email and password required"})
+			return
+		}
+
+		// TODO: add supabase auth here :)
+
+		c.JSON(http.StatusOK,gin.H{"message":"signup success"})
+	})
 
 	// Routes
 	r.Use(AuthMiddleware())
 	{
 		// Register User Information routes
-		routeGroup := r.Group("/api/userinfo")
+		routeGroup := r.Group("/auth")
 		{
-			routeGroup.POST("/create", userinfo.Create)
+			routeGroup.POST("/signup", userinfo.Create)
+			routeGroup.POST("/login", userinfo.Login)
 			routeGroup.GET("/read", userinfo.Read)
 			routeGroup.GET("/update", userinfo.Update)
 		}
 	}
 
-	//r.POST("/notes", createNote)
-	//r.GET("/notes", getNotes)
-	//r.PUT("/notes/:id", updateNote)
-	//r.DELETE("/notes/:id", deleteNote)
+	// r.POST("/notes", createNote)
+	// r.GET("/notes", getNotes)
+	// r.PUT("/notes/:id", updateNote)
+	// r.DELETE("/notes/:id", deleteNote)
 
 	log.Fatal(r.Run(":8080"))
 }
