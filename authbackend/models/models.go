@@ -7,6 +7,7 @@ type Auth struct {
 	UserName  string `json:"username"`
 	NationID  string `json:"national_id"`
 	Email     string `json:"email"`
+	Password  string `json:"password"`
 }
 
 // peer represents the investor/lender or the borrower/client
@@ -17,5 +18,5 @@ type Peer struct {
 	NationID  string
 	Email     string
 	Balance   float64 // amount the peer has
-	LenderId string // the id of the lender who gave the peer money
+	LenderId  string  // the id of the lender who gave the peer money
 }
