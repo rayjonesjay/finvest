@@ -148,7 +148,7 @@
             if (!isNaN(amount) && amount > 0) {
                 const totalPayable = amount + (amount * interestRate / 100);
                 document.getElementById("totalPayable").textContent = 
-                    `Total Payable (with 8% interest): $${totalPayable.toFixed(2)}`;
+                    `Total Payable (with 10% interest): ksh.${totalPayable.toFixed(2)}`;
             } else {
                 document.getElementById("totalPayable").textContent = 
                     "Enter a valid loan amount.";
