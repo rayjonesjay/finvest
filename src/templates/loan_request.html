@@ -143,7 +143,8 @@
     <script>
         function calculateTotalPayable() {
             const amount = parseFloat(document.getElementById("amount").value);
-            const interestRate = 8; // 8% interest rate
+
+            const interestRate = 10;
             if (!isNaN(amount) && amount > 0) {
                 const totalPayable = amount + (amount * interestRate / 100);
                 document.getElementById("totalPayable").textContent = 
@@ -175,19 +176,48 @@
         <div class="form-container">
             <h1>Request a Loan</h1>
             <form action="/loan-request" method="POST">
-                <label for="amount">Loan Amount ($):</label>
+                <strong></strong><label for="amount">Loan Amount (ksh)</label></strong>
                 <input type="number" id="amount" name="amount" placeholder="Enter loan amount" oninput="calculateTotalPayable()" required>
                 
-                <p id="totalPayable" class="total-payable">Total Payable (with 8% interest): $0.00</p>
+                <p id="totalPayable" class="total-payable">Total Payable (with 10% interest): ksh.0.00</p>
+                <input type="text" placeholder="Prefered duration (dys)" oninput="calculateTotalPayable()" required>
+                <input type="number" placeholder="ID"  required>
+                <label for="optionsDropdown">Choose an option:</label>
+                <div>
 
-                <button type="submit">Submit Loan Request</button>
+                    <select id="optionsDropdown" onchange="handleSelection()">
+                        <option value="option1" selected>Business Person</option>
+                        <option value="option2">Student</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div id="otherInput">
+                    <label for="otherOption">Please specify:</label>
+                    <input type="text" id="otherOption" name="otherOption">
+                </div>
+
+    
+                <button type="submit">ASK FOR FUNDING</button>
             </form>
         </div>
     </main>
 
     <footer>
-        <p>&copy; 2024 LoanQuest. All rights reserved.</p>
+        <p>&copy; 2024 Finvest. All rights reserved.</p>
     </footer>
+    <script>
+        function handleSelection() {
+            var dropdown = document.getElementById("optionsDropdown");
+            var otherInput = document.getElementById("otherInput");
+            var selectedValue = dropdown.value;
+
+            if (selectedValue === "other") {
+                otherInput.style.display = "block";  // Show input field
+            } else {
+                otherInput.style.display = "none";   // Hide input field
+            }
+        }
+    </script>
 
 </body>
 </html>
