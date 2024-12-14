@@ -4,107 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - Lending Platform</title>
-    <link rel="stylesheet" href="/static/css/style.css">
-    <script>
-        async function handleRegister(event) {
-            event.preventDefault();
-
-            const email = document.getElementById("email").value;
-            const password = document.getElementById("password").value;
-            const userType = document.querySelector('input[name="user_type"]:checked').value;
-
-            const response = await fetch("/register", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ email, password, userType }),
-            });
-
-            const data = await response.json();
-
-            if (response.ok) {
-                alert(data.message);
-                window.location.href = "/login"; // Redirect to login page after successful registration
-            } else {
-                alert(data.message || "Registration failed. Please try again.");
-            }
-        }
-    </script>
-</head>
-<body>
-<<<<<<< HEAD
-    <header>
-        <nav class="nav-bar">
-            <div class="logo">
-                <img src="https://lh3.googleusercontent.com/pw/AP1GczNnzv5Ze6c3DVnyxqIMYE_yGceeSPWnIST1oR_oTrSKKgeqrRKmYkhwB1j1mgRwGc9rVv1LGwM8owzMCskId80_d3dzhlr_X8BKyGf9SfI2GW92OCRIHhD1QFDZAkr6bo6ni2Rae-YodFg9F7be_FE-4w=w467-h623-s-no"
-                    alt="LoanQuest Logo">
-            </div>
-            <div>
-                <ul class="links">
-                    <li><a href="/home">Home</a></li>
-                    <li><a href="/about">About</a></li>
-                    <li><a href="/register">Register</a></li>
-                    <li><a href="/borrow">Borrow</a></li>
-                    <li><a href="/lend">Lend</a></li>
-                </ul>
-            </div>
-            <div class="sign-in">
-                <a href="login.html">Sign in</a>
-            </div>
-=======
-     <header>
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/register">Register</a></li>
-                <li><a href="/sign-in">Sign In</a></li>
-                <li><a href="/login">Login</a></li>
-                <li><a href="/borrow">Borrow</a></li>
-                <li><a href="/lend">Lend</a></li>
-                <li><a href="/profile">User</a></li>
-            </ul>
->>>>>>> e692bb0a14b3cf906f1677cfb6de18562ed9dda4
-        </nav>
-    </header>
-    </header>
-
-    <main>
-        <div class="form-container">
-            <h1>Register</h1>
-            <form onsubmit="handleRegister(event)">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" placeholder="Enter your email" required>
-
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" placeholder="Enter your password" required>
-
-                <fieldset>
-                    <legend>Register as:</legend>
-                    <label>
-                        <input type="radio" name="user_type" value="borrower" required> Borrower
-                    </label>
-                    <label>
-                        <input type="radio" name="user_type" value="lender" required> Investor
-                    </label>
-                </fieldset>
-
-                <button type="submit">Register</button>
-            </form>
-        </div>
-    </main>
-
-    <footer>
-        <p>&copy; 2024 LoanQuest. All rights reserved.</p>
-    </footer>
-</body>
-</html>
-
-
-        body, html {
+    <style>
+        /* Basic Reset */
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
             font-family: 'Arial', sans-serif;
             background-color: #f7f9fb;
             color: #333;
@@ -172,47 +80,13 @@
         h1 {
             font-size: 36px;
             color: #0d283d;
+            margin-bottom: 20px;
         }
 
         p {
             font-size: 18px;
             color: #555;
             margin: 20px 0;
-        }
-
-        h2 {
-            font-size: 28px;
-            color: #0d283d;
-            margin-bottom: 15px;
-        }
-
-        section {
-            margin: 40px 0;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        ul li {
-            font-size: 18px;
-            margin: 10px 0;
-        }
-
-        ul li a {
-            text-decoration: none;
-            color: #1e90ff;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
-
-        ul li a:hover {
-            color: #0d283d;
         }
 
         .form-container {
@@ -269,15 +143,27 @@
         footer p {
             margin: 0;
         }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-bar .links {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .form-container {
+                width: 90%;
+                padding: 20px;
+            }
+        }
+
     </style>
 </head>
-
 <body>
     <header>
         <nav class="nav-bar">
             <div class="logo">
-                <img src="https://lh3.googleusercontent.com/pw/AP1GczNnzv5Ze6c3DVnyxqIMYE_yGceeSPWnIST1oR_oTrSKKgeqrRKmYkhwB1j1mgRwGc9rVv1LGwM8owzMCskId80_d3dzhlr_X8BKyGf9SfI2GW92OCRIHhD1QFDZAkr6bo6ni2Rae-YodFg9F7be_FE-4w=w467-h623-s-no"
-                    alt="LoanQuest Logo">
+                <img src="https://lh3.googleusercontent.com/pw/AP1GczNnzv5Ze6c3DVnyxqIMYE_yGceeSPWnIST1oR_oTrSKKgeqrRKmYkhwB1j1mgRwGc9rVv1LGwM8owzMCskId80_d3dzhlr_X8BKyGf9SfI2GW92OCRIHhD1QFDZAkr6bo6ni2Rae-YodFg9F7be_FE-4w=w467-h623-s-no" alt="LoanQuest Logo">
             </div>
             <div>
                 <ul class="links">
@@ -289,69 +175,65 @@
                 </ul>
             </div>
             <div class="sign-in">
-                <a href="login.html">Sign in</a>
+                <a href="/login">Sign In</a>
             </div>
         </nav>
     </header>
 
     <main>
-        <h1>Welcome to LoanQuest Platform</h1>
-        <p>Connect with investors and borrowers directly. Secure and decentralized lending.</p>
+        <div class="form-container">
+            <h1>Register</h1>
+            <form onsubmit="handleRegister(event)">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
 
-        <section>
-            <h2>How It Works</h2>
-            <p>LoanQuest allows investors to lend money and borrowers to request loans with competitive interest rates. LoanQuest
-                facilitates an 8% interest rate on loans.</p>
-        </section>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
 
-        <section>
-            <h2>Get Started</h2>
-            <ul>
-                <li><a href="/register">Create an account</a></li>
-                <li><a href="/sign-in">Sign In</a></li>
-                <li><a href="/borrow">Request a Loan</a></li>
-                <li><a href="/lend">Lend Money</a></li>
-            </ul>
-        </section>
+                <fieldset>
+                    <legend>Register as:</legend>
+                    <label>
+                        <input type="radio" name="user_type" value="borrower" required> Borrower
+                    </label>
+                    <label>
+                        <input type="radio" name="user_type" value="lender" required> Investor
+                    </label>
+                </fieldset>
 
-        <!-- Login Section -->
-        <section>
-            <h2>Login to Your Account</h2>
-            
-        </section>
+                <button type="submit">Register</button>
+            </form>
+        </div>
     </main>
 
     <footer>
-        <p>&copy; 2024 LoanQuest Platform. All rights reserved.</p>
+        <p>&copy; 2024 LoanQuest. All rights reserved.</p>
     </footer>
 
     <script>
-        // Handle Login via AJAX (fetch API)
-        async function handleLogin(event) {
+        async function handleRegister(event) {
             event.preventDefault();
 
             const email = document.getElementById("email").value;
             const password = document.getElementById("password").value;
+            const userType = document.querySelector('input[name="user_type"]:checked').value;
 
-            // Send the login credentials to the server
-            const response = await fetch("/login", {
+            const response = await fetch("/register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ email, password }),
+                body: JSON.stringify({ email, password, userType }),
             });
 
             const data = await response.json();
 
             if (response.ok) {
                 alert(data.message);
-                window.location.href = "/dashboard"; // Redirect to dashboard if login is successful
+                window.location.href = "/login"; // Redirect to login page after successful registration
             } else {
-                alert(data.message || "Login failed. Please try again.");
+                alert(data.message || "Registration failed. Please try again.");
             }
         }
     </script>
 </body>
-
 </html>
