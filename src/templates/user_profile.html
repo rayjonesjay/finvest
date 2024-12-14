@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LoanQuest</title>
     <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="icon" href="../static/favicon.png" type="image/x-icon">
+
+    <link rel="icon" href="../static/favicon.png" type="image/png">
     <script>
         // Function to get the user's current geolocation
         function getGeolocation() {
             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
+                navigator.geolocation.getCurrentPosition(function (position) {
                     const latitude = position.coords.latitude;
                     const longitude = position.coords.longitude;
                     document.getElementById("location").value = `Lat: ${latitude}, Lon: ${longitude}`;
-                }, function() {
+                }, function () {
                     alert("Geolocation is not available or permission denied.");
                 });
             } else {
@@ -22,11 +26,12 @@
         }
 
         // Trigger geolocation when the page loads
-        window.onload = function() {
+        window.onload = function () {
             getGeolocation();
         }
     </script>
 </head>
+
 <body>
     <div class="form-container">
         <h1>User Profile</h1>
@@ -53,11 +58,13 @@
 
             <!-- Location field (auto-filled with geolocation) -->
             <label for="location">Location:</label>
-            <input type="text" id="location" name="location" placeholder="Location will be fetched automatically" readonly>
+            <input type="text" id="location" name="location" placeholder="Location will be fetched automatically"
+                readonly>
 
             <!-- Submit button -->
             <button type="submit">Submit Profile</button>
         </form>
     </div>
 </body>
+
 </html>

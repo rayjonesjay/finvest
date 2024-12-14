@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/css/style.css">
     <title>Login</title>
+    <link rel="icon" href="../static/favicon.png" type="image/x-icon">
+
+    <link rel="icon" href="../static/favicon.png" type="image/png">
     <script>
         async function handleLogin(event) {
             event.preventDefault();
@@ -33,20 +36,23 @@
     </script>
     <style>
         /* Full viewport height with Flexbox for centering */
-        html, body {
+        html,
+        body {
             height: 100%;
             margin: 0;
             font-family: 'Arial', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #f7f9fb; /* Light background */
+            background-color: #f7f9fb;
+            /* Light background */
         }
 
         /* Container styling */
         .form-container {
             width: 100%;
-            max-width: 400px; /* Limit the width */
+            max-width: 400px;
+            /* Limit the width */
             background-color: #ffffff;
             padding: 30px;
             border-radius: 8px;
@@ -55,7 +61,8 @@
         }
 
         h1 {
-            color: #003366; /* Dark Blue for header */
+            color: #003366;
+            /* Dark Blue for header */
             margin-bottom: 20px;
         }
 
@@ -82,7 +89,8 @@
             width: 100%;
             padding: 12px;
             font-size: 18px;
-            background-color: #1e90ff; /* Blue button */
+            background-color: #1e90ff;
+            /* Blue button */
             color: white;
             border: none;
             border-radius: 5px;
@@ -91,7 +99,8 @@
         }
 
         .form-container button:hover {
-            background-color: #0d283d; /* Darker blue on hover */
+            background-color: #0d283d;
+            /* Darker blue on hover */
         }
 
         /* Responsive Design */
@@ -100,6 +109,7 @@
                 padding: 20px;
             }
         }
+
         .forgot-paswd {
             justify-content: right;
         }
@@ -109,7 +119,7 @@
 <body>
 
     <header>
-        <!-- <nav>
+        <nav>
             <ul>
                 <li><a href="/">Home</a></li>
                 <li><a href="/about">About</a></li>
@@ -119,7 +129,7 @@
                 <li><a href="/borrow">Borrow</a></li>
                 <li><a href="/lend">Lend</a></li>
             </ul>
-        </nav> -->
+        </nav>
     </header>
 
     <div class="form-container">
@@ -134,7 +144,8 @@
                 <a href="forget-password.html">forgot password</a>
             </div>
 
-            <button type="submit">Login</button>
+            <button type="submit">
+                <a href="index.html" >Login</a></button>
         </form>
         <div class="sign-up" style="text-size-adjust: small;">
             <a href="register.html">Don't have an account?</a>
