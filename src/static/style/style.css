@@ -65,7 +65,7 @@ body, html {
 }
 
 main {
-    padding: 4rem 2rem;
+    padding: 3rem 4rem;
     max-width: 1200px;
     margin: 0 auto;
     animation: fadeIn 1s ease-out;
@@ -97,7 +97,7 @@ p {
     padding: 2rem;
     border-radius: 1rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
+    max-width: 400px;
     margin: 0 auto;
     animation: fadeIn 1s ease-out;
 }
@@ -176,11 +176,10 @@ button:hover {
 }
 
 footer {
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: #0d283d;
     backdrop-filter: blur(10px);
-    padding: 2rem;
+    padding: 1rem;
     text-align: center;
-    color: var(--text-dark);
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
     position: fixed;
     bottom: 0;
@@ -188,7 +187,7 @@ footer {
 }
 
 footer p {
-    color: var(--text-dark);
+    color: whitesmoke;
     opacity: 0.7;
 }
 
@@ -215,23 +214,6 @@ footer p {
     .form-container {
         padding: 1.5rem;
     }
-}
-
-footer {
-    background-color: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    padding: 2rem;
-    text-align: center;
-    color: var(--text-dark);
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
-
-footer p {
-    color: var(--text-dark);
-    opacity: 0.7;
 }
 
 @media (max-width: 768px) {
