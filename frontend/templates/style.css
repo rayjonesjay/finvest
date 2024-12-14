@@ -1,0 +1,107 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #287acb;
+    color: #333;
+}
+
+.container {
+    max-width: 300px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #0d4049;
+    color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.form-control:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 150, 136, 0.5);
+}
+
+#btn-submit {
+    background-color: #009688;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+
+#btn-submit:hover {
+    background-color: #00796b;
+}
+
+button {
+    background-color: white;
+    color: #0d4049;
+    border: 2px solid #0d4049;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #009688;
+    color: white;
+}
+
+.text-warning {
+    background-color: transparent;
+    color: #e6e0e0;
+    font-size: 14px;
+}
+
+.text-primary {
+    background-color: #2196f3;
+    color: white;
+    font-size: 14px;
+}
+
+a {
+    text-decoration: none;
+    color: #4caf50;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+#signin-status {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #0d4049;
+    color: #fff;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
