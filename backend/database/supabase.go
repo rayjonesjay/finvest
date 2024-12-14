@@ -15,7 +15,9 @@ func InitSupabase(apiKey, supabaseURL string) {
 		log.Fatal("Supabase API key or URL is missing!")
 	}
 
-	SupabaseClient = postgrest.NewClient(supabaseURL, apiKey, nil)
+	SupabaseClient = postgrest.NewClient(supabaseURL, "public", nil)
+	SupabaseClient.SetApiKey(apiKey)
+	//SupabaseClient.SetAuthToken(apiKey)
 	log.Println("Supabase client initialized successfully.")
 }
 
