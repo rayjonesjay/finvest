@@ -86,7 +86,7 @@ func main() {
 		routeGroup := r.Group("/auth")
 		{
 			routeGroup.POST("/signup", userinfo.Create)
-			routeGroup.POST("/login", userinfo.Login)
+			// routeGroup.POST("/login", userinfo.Login)
 			routeGroup.GET("/read", userinfo.Read)
 			routeGroup.GET("/update", userinfo.Update)
 		}
