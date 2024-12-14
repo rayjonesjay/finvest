@@ -1,0 +1,155 @@
+<html><head>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dashboard - LoanQuest</title>
+        <link rel="icon" href="../static/favicon.png" type="image/x-icon">
+        <link rel="stylesheet" href="../static/style/style.css">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </head>
+    <body>
+        <nav class="nav-bar">
+            <div class="logo">
+                <img src="../static/favicon.png" alt="LoanQuest Logo">
+            </div>
+            <div class="user-menu">
+                <div class="notification-icon" id="notificationIcon">
+                    <svg class="notification-bell" viewBox="0 0 24 24">
+                        <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/>
+                    </svg>
+                    <span class="notification-count">3</span>
+                    <div class="notification-dropdown" id="notificationDropdown">
+                        <div class="notification-item">
+                            New payment received for Loan #1234
+                        </div>
+                        <div class="notification-item">
+                            Upcoming payment due in 3 days
+                        </div>
+                        <div class="notification-item">
+                            Your loan application has been approved
+                        </div>
+                    </div>
+                </div>
+                <span>Welcome, User</span>
+            </div>
+        </nav>
+    
+        <div class="dashboard-container">
+            <aside class="sidebar">
+                <ul class="sidebar-menu">
+                    <li><a href="/dashboard">Dashboard</a></li>
+                    <li><a href="/loans">My Loans</a></li>
+                    <li><a href="/transactions">Transactions</a></li>
+                    <li><a href="/profile">Profile</a></li>
+                    <li><a href="/settings">Settings</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                </ul>
+            </aside>
+    
+            <main class="main-content">
+                <div class="dashboard-header">
+                    <h1>Dashboard Overview</h1>
+                </div>
+    
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Active Loans</h3>
+                        <div class="stat-value">3</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total Balance</h3>
+                        <div class="stat-value">$12,500</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Payment Due</h3>
+                        <div class="stat-value">$350</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Credit Score</h3>
+                        <div class="stat-value">725</div>
+                    </div>
+                </div>
+    
+                <div class="chart-container">
+                    <canvas id="loanChart"></canvas>
+                </div>
+    
+                <div class="recent-activity">
+                    <h2>Recent Activity</h2>
+                    <ul class="activity-list">
+                        <li class="activity-item">Payment received - $250</li>
+                        <li class="activity-item">New loan application submitted</li>
+                        <li class="activity-item">Profile updated</li>
+                        <li class="activity-item">Document verified</li>
+                    </ul>
+                </div>
+            </main>
+        </div>
+    
+        <script>
+            // Notification functionality
+            const notificationIcon = document.getElementById('notificationIcon');
+            const notificationDropdown = document.getElementById('notificationDropdown');
+    
+            notificationIcon.addEventListener('click', () => {
+                notificationDropdown.classList.toggle('show');
+            });
+    
+            document.addEventListener('click', (event) => {
+                if (!notificationIcon.contains(event.target)) {
+                    notificationDropdown.classList.remove('show');
+                }
+            });
+    
+            const ctx = document.getElementById('loanChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Loan Balance',
+                        data: [15000, 14200, 13400, 12800, 12200, 11500],
+                        borderColor: '#2563eb',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Loan Balance Over Time'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: false
+                        }
+                    }
+                }
+            });
+    
+            async function fetchDashboardData() {
+                try {
+                    const response = await fetch('/api/dashboard-data');
+                    const data = await response.json();
+                    updateDashboard(data);
+                } catch (error) {
+                    console.error('Error fetching dashboard data:', error);
+                }
+            }
+    
+            function updateDashboard(data) {
+                console.log('Updating dashboard with:', data);
+            }
+    
+            fetchDashboardData();
+        </script>
+    </body>
+    </html>
