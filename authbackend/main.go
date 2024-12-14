@@ -52,20 +52,20 @@ func main() {
 	}
 
 	// static files
-	r.Static("/static", "../frontend/static")
+	r.Static("/static", "../src/templates/")
 
 	// Load HTML templates
-	r.LoadHTMLGlob("../frontend/templates/*.html")
+	r.LoadHTMLGlob("../src/templates/*.html")
 
 	r.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "index.html", nil)
+		c.HTML(http.StatusOK, "home.html", nil)
 	})
 
 	r.GET("/signup", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "signup.html", nil)
+		c.HTML(http.StatusOK, "register.html", nil)
 	})
 
-	r.POST("/signup", func(c *gin.Context){
+	r.POST("/signup", func(c *gin.Context) {
 		email := c.PostForm("email")
 		password := c.PostForm("password")
 
@@ -76,7 +76,7 @@ func main() {
 
 		// TODO: add supabase auth here :)
 
-		c.JSON(http.StatusOK,gin.H{"message":"signup success"})
+		c.JSON(http.StatusOK, gin.H{"message": "signup success"})
 	})
 
 	// Routes

@@ -117,3 +117,30 @@ func Update(c *gin.Context) {
 	log.Printf("Update user_info: %v %v %v\n", result, count, err)
 	c.JSON(http.StatusCreated, gin.H{"message": "User information updated successfully", "data": result})
 }
+
+
+type LoginRequest struct {
+	Email    string `json:"email" binding:"required"`
+	Password string `json:"password" binding:"required"`
+}
+
+
+// login handles user login
+func Login(c *gin.Context){
+	var req LoginRequest
+	if err := c.ShouldBindJSON(&req); err != nil {
+		c.JSON(http.StatusBadRequest,gin.H{"error":"invalid request payload"})
+		return
+	}
+
+	authResponse , err := xsupabase.SupabaseClient.Auth.SignInWithEmailPassword(req.Email,req.Password)
+	if err != nil {
+		c.JSON(http.StatusUnauthorized, gin.H{"error":"invalid credentials"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"message": "Login success",
+		"token": authResponse.AccessToken,
+	})
+}
