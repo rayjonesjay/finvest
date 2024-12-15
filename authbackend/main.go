@@ -24,8 +24,8 @@ func main() {
 	}
 
 	// Initialize Supabase client
-	supabaseURL := os.Getenv("PUBLIC_SUPABASE_URL")
-	supabaseKey := os.Getenv("PUBLIC_SUPABASE_ANON_KEY")
+	supabaseURL := os.Getenv("SUPABASE_URL")
+	supabaseKey := os.Getenv("SUPABASE_API")
 
 	xsupabase.SupabaseClient, err = supabase.NewClient(supabaseURL, supabaseKey, &supabase.ClientOptions{})
 	if err != nil {
