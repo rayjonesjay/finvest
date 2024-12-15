@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Finvest</title>
+    <link rel="icon" href="../static/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../static/style/style.css">
+    <style>
+        
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="nav-bar">
+            <div class="logo">
+                <a href="/">
+                <img src="../static/favicon.png" alt="Finvest">
+            </a>
+            <div style="display: flex; justify-content: center;">
+                <h1>Welcome to your micro-loaning app</h1>
+            </div>
+            </div>
+            <div>
+                <ul class="links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="form-container">
+            <h1>Register</h1>
+            <form onsubmit="handleRegister(event)">
+                <input type="name" id="name" name="name" placeholder="Enter your name" required>
+
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+                <input type="phone-number" id="phone-number" name="phone-number" placeholder="Enter your phone no." required>
+
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>    
+                <button type="submit">Register</button>
+                <div>
+                    <a href="/sign-in">Already have an account?</a>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Finvest. All rights reserved.</p>
+    </footer>
+
+    <script>
+        async function handleRegister(event) {
+            event.preventDefault();
+
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const userType = document.querySelector('input[name="user_type"]:checked').value;
+
+            const response = await fetch("/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email, password, userType }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                alert(data.message);
+                window.location.href = "/login";
+            } else {
+                alert(data.message || "Registration failed. Please try again.");
+            }
+        }
+    </script>
+</body>
+</html>

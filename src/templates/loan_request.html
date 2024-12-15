@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Request</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f9fb;
+            color: #333;
+            display: flex; /* Use flexbox for the layout */
+            flex-direction: column;
+            min-height: 100vh; /* Ensure body is at least the full viewport height */
+        }
+
+        header {
+            background-color: #0d283d;
+            padding: 10px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        header nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+
+        header nav ul li {
+            margin: 0 15px;
+        }
+
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        header nav ul li a:hover {
+            color: #1e90ff;
+        }
+
+        /* Main Content */
+        main {
+            flex: 1; /* Allow main content to take up remaining space */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Form Container */
+        .form-container {
+            max-width: 500px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container h1 {
+            text-align: center;
+            font-size: 28px;
+            color: #0d283d;
+            margin-bottom: 20px;
+        }
+
+        .form-container label {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .form-container input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .form-container p {
+            font-size: 16px;
+            color: #333;
+        }
+
+        .form-container .total-payable {
+            font-size: 18px;
+            color: #1e90ff;
+            font-weight: bold;
+        }
+
+        .form-container button {
+            width: 100%;
+            padding: 12px;
+            font-size: 18px;
+            background-color: #1e90ff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .form-container button:hover {
+            background-color: #0d283d;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0d283d;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 20px;
+                width: 90%;
+            }
+        }
+
+    </style>
+    <script>
+        function calculateTotalPayable() {
+            const amount = parseFloat(document.getElementById("amount").value);
+
+            const interestRate = 10;
+            if (!isNaN(amount) && amount > 0) {
+                const totalPayable = amount + (amount * interestRate / 100);
+                document.getElementById("totalPayable").textContent = 
+                    `Total Payable (with 10% interest): ksh.${totalPayable.toFixed(2)}`;
+            } else {
+                document.getElementById("totalPayable").textContent = 
+                    "Enter a valid loan amount.";
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/register">Register</a></li>
+                <li><a href="/sign-in">Sign In</a></li>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/borrow">Borrow</a></li>
+                <li><a href="/lend">Lend</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="form-container">
+            <h1>Request a Loan</h1>
+            <form action="/loan-request" method="POST">
+                <strong></strong><label for="amount">Loan Amount (ksh)</label></strong>
+                <input type="number" id="amount" name="amount" placeholder="Enter loan amount" oninput="calculateTotalPayable()" required>
+                
+                <p id="totalPayable" class="total-payable">Total Payable (with 10% interest): ksh.0.00</p>
+                <input type="text" placeholder="Prefered duration (dys)" oninput="calculateTotalPayable()" required>
+                <input type="number" id="ID" placeholder="ID"  required>
+                <label for="optionsDropdown">Choose an option:</label>
+                <div>
+
+                    <select id="optionsDropdown" onchange="handleSelection()">
+                        <option value="option1" selected>Business Person</option>
+                        <option value="option2">Student</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div id="otherInput">
+                    <label for="otherOption">Please specify:</label>
+                    <input type="text" id="otherOption" name="otherOption">
+                </div>
+
+    
+                <button type="submit">ASK FOR FUNDING</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Finvest. All rights reserved.</p>
+    </footer>
+    <script>
+        function handleSelection() {
+            var dropdown = document.getElementById("optionsDropdown");
+            var otherInput = document.getElementById("otherInput");
+            var selectedValue = dropdown.value;
+
+            if (selectedValue === "other") {
+                otherInput.style.display = "block";  // Show input field
+            } else {
+                otherInput.style.display = "none";   // Hide input field
+            }
+        }
+    </script>
+
+</body>
+</html>
