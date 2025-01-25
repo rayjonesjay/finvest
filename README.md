@@ -11,3 +11,11 @@ https://github.com/rayjonesjay/finvest.git
 cd finvest
 ```
 
+### Contributers
+
+- [Ray Jones](https://github.com/rayjonesjay)
+- [Nicholas Otieno]()
+- [Benard Opiyo]()
+- [Nichilas Ajwang]()
+- [Ray M](https://github.com/anxielray)
+
